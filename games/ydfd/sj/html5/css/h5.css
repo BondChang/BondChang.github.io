@@ -1,0 +1,142 @@
+/* line 1, ../sass/demo.scss */
+barhtml {
+  -webkit-font-smoothing: antialiased;
+  background: #fff;
+  -webkit-text-size-adjust: none;
+}
+
+/* line 2, ../sass/demo.scss */
+body, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ul, ol, li, form, button, input, textarea, th, td {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 3, ../sass/demo.scss */
+body, button, input, select, textarea {
+  font: 62.5%/1.5 \5FAE\8F6F\96C5\9ED1,arial,sans-serif;
+}
+
+/* line 4, ../sass/demo.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+}
+
+/* line 5, ../sass/demo.scss */
+cite, em, var, i {
+  font-style: normal;
+}
+
+/* line 6, ../sass/demo.scss */
+code {
+  font-family: courier new,courier,monospace;
+}
+
+/* line 7, ../sass/demo.scss */
+form {
+  display: inline;
+}
+
+/* line 8, ../sass/demo.scss */
+small {
+  font-size: 12px;
+}
+
+/* line 9, ../sass/demo.scss */
+ul, ol, li {
+  list-style: none;
+}
+
+/* line 10, ../sass/demo.scss */
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+/* line 11, ../sass/demo.scss */
+img {
+  vertical-align: top;
+  border: none 0;
+  -ms-interpolation-mode: bicubic;
+}
+
+/* line 12, ../sass/demo.scss */
+button, input, select, textarea {
+  font-size: 100%;
+}
+
+/* line 13, ../sass/demo.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 14, ../sass/demo.scss */
+input, button, select, textarea {
+  outline: none;
+}
+
+/* line 15, ../sass/demo.scss */
+textarea {
+  resize: none;
+}
+
+/* line 16, ../sass/demo.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* line 17, ../sass/demo.scss */
+body {
+  min-width: 320px;
+  margin: 0 auto;
+}
+
+/* line 18, ../sass/demo.scss */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* line 20, ../sass/demo.scss */
+.wb {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  background: url(../images/logo.jpg) white no-repeat center 22.91%;
+  background-size: 185px auto;
+}
+
+/* line 32, ../sass/demo.scss */
+.jtxt {
+  width: 100%;
+  height: 85px;
+  line-height: 85px;
+  font-size: 2.2em;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  color: #0cacff;
+  font-family: \5FAE\8F6F\96C5\9ED1;
+}
+
+/* line 46, ../sass/demo.scss */
+.jin {
+  position: relative;
+  top: 50%;
+  margin: -4px auto 0;
+  width: 61.62%;
+  height: 8px;
+  overflow: hidden;
+  background: #e1e1e1;
+}
+
+/* line 56, ../sass/demo.scss */
+.jin span {
+  float: left;
+  height: 8px;
+  background: #0cacff;
+}

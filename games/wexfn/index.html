@@ -1,0 +1,813 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="format-detection"content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<title>鬼子来啦，快来帮王二小抓牛呀！</title>
+<link href="css/fangniu.css" rel="stylesheet" type="text/css">
+</head>
+<body style="overflow: hidden;">
+
+<div class="bg-audio" >
+    <a href="javascript:;" class="audio-btn close">
+        <audio src="audio/shuiniu.mp3" loop="loop"></audio>
+    </a>
+</div>
+
+
+<div id="loading">
+    <div class="load_bianzi"><img src="img/load_bianzi.gif" /></div>
+    <div class="loadniu_r"><i class="anim0"></i></div>
+    <div class="load_main">
+        <div class="load_leng"><span></span></div>
+        <div class="load_num">王二小正在赶牛，请耐心等待...<span>0%</span></div>
+    </div>
+    <div class="footer"><img src="img/footer.png" /></div>
+</div>
+<div class="cover">
+    <div class="bgcover"></div>
+    <div class="c_niurun"><img src="img/cover_03.png"></div>
+    <div class="c_finger"><img src="img/cover_06.png"></div>
+    <div class="c_zhuanwo"><img src="img/cover_10.png"></div>
+    <div class="c_niu"><i class="anim0"></i></div>
+    <div class="c_xiaocao"></div>
+    <div class="c_guize"><img src="img/c_desc.png" /></div>
+</div>
+
+<div class="game">
+    <div class="gm_num">
+        <div class="gmn_left"><i></i><span><img src="img/0.png" /></span></div>
+        <div class="gmn_right"><i></i><span><img src="img/4.png"><img src="img/5.png"></span></div>
+    </div>
+
+    <div class="juan"><img src="img/gm3_01.png"></div>
+    <div id="circle" class="circle"></div>
+
+    <div class="niu niuqun0"><div class="niu_l"><i class="anim0"></i></div></div>
+    <div class="niu niuqun1"><div class="niu_l"><i class="anim0"></i></div></div>
+    <div class="niu niuqun2"><div class="niu_r"><i class="anim0"></i></div></div>
+    <div class="niu niuqun3"><div class="niu_r"><i class="anim0"></i></div></div>
+    <div class="niu niuqun4"><div class="niu_r"><i class="anim0"></i></div></div>
+
+    <div id="wang" class="wang">
+        <i class="anim0"></i>
+    </div>
+    <div class="tip_word"></div>
+    <div class="tip_finger"></div>
+
+    <div class="time_end" style="display: none;">
+        <div class="time_word">你成功保住了0头牛，不愧是放牛的王二小！</div>
+        <div class="restart timerep"><img src="img/time_08.png"></div>
+        <div class="looknum"><a class="showreslut" href="javascript:;"><img src="img/wxshare_03.png" /></a></div>
+    </div>
+    <div class="break_end" style="display: none;">
+        <div class="break_word">任务失败，<br />说好的放牛小能手呢？</div>
+        <div class="restart breakrep"><img src="img/time_08.png"></div>
+        <div class="looknum"><a class="showreslut" href="javascript:;"><img src="img/wxshare_03.png" /></a></div>
+    </div>
+
+    <div class="wxshare" style="display: none;">
+        <div class="shareimg"><img src="img/shareimg_03.png" /></div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="js/zepto.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="js/touch.js" charset="UTF-8"></script>
+<script>
+    var shareData;
+    shareData = {
+        title: "快来帮王二小抓牛呀！",
+        desc: "一大波牛正在逃窜中，你能帮王二小把它们抓回来吗？",
+        img: "img/02.jpg",//分享图片
+        link: "index.html"
+    }
+    //分享代码
+    /*$('.looknum').on("tap",function(){
+        shareQQNews();
+    });*/
+
+    var UA = function(){
+        var userAgent = navigator.userAgent.toLowerCase();
+        return {
+            ipad: /ipad/.test(userAgent),
+            iphone: /iphone/.test(userAgent),
+            android: /android/.test(userAgent),
+            qqnews: /qqnews/.test(userAgent),
+            weixin: /micromessenger/.test(userAgent),
+            qqnews_version: userAgent.match(/qqnews/i) == "qqnews" ? userAgent.split('qqnews/')[1] : ''
+        };
+    };
+
+    function shareQQNews() {
+        var ua = UA();
+        switch(true){
+            case ua.qqnews:
+                if(window.TencentNews && window.TencentNews.setShareArticleInfo){
+                    window.TencentNews.setShareArticleInfo(shareData.title, shareData.desc, shareData.desc, shareData.link, shareData.img);
+                }
+                if(window.TencentNews && window.TencentNews.showShareMenu) {
+                    window.TencentNews.showShareMenu(shareData.link, shareData.title, shareData.desc, shareData.img,"news_news_wc");
+                }else{
+                    window.TencentNews.shareFromWebView(shareData.title, shareData.desc, shareData.img);
+                }
+                break;
+            case ua.weixin:
+                var weixinLayout=document.querySelector(".weixin_layout");
+                weixinLayout.style.display="block";
+                weixinLayout.addEventListener("click",function(){
+                    weixinLayout.style.display="none";
+                });
+                break;
+            default:
+                window.location = "http://share.v.t.qq.com/index.php?c=share&a=index&appkey=801378464&url="
+                        + shareData.link + "&title="
+                        + shareData.desc +"&pic="
+                        + shareData.img + "&des="
+                        + shareData.title;
+                break;
+        };
+    }
+
+    function onBridgeReady() {
+
+        //转发朋友圈
+        WeixinJSBridge.on("menu:share:timeline", function(e) {
+            var data = {
+                img_width: "120",
+                img_height: "120",
+                img_url: shareData.img,
+                link: shareData.link,   //desc这个属性要加上，虽然不会显示，但是不加暂时会导致无法转发至朋友圈，
+                desc: shareData.title,
+                title: shareData.desc
+            };
+            WeixinJSBridge.invoke("shareTimeline", data, function(res) {
+                WeixinJSBridge.log(res.err_msg)
+            });
+        });
+        //同步到微博
+        WeixinJSBridge.on("menu:share:weibo", function() {
+            WeixinJSBridge.invoke("shareWeibo", {
+                "content": shareData.desc,
+                "url": shareData.link
+            }, function(res) {
+                WeixinJSBridge.log(res.err_msg);
+            });
+        });
+        //分享给朋友
+        WeixinJSBridge.on('menu:share:appmessage', function(argv) {
+            WeixinJSBridge.invoke("sendAppMessage", {
+                img_width: "120",
+                img_height: "120",
+                img_url: shareData.img,
+                link: shareData.link,
+                desc: shareData.desc,
+                title: shareData.title
+            }, function(res) {
+                WeixinJSBridge.log(res.err_msg)
+            });
+        });
+    };
+    //执行
+    document.addEventListener('WeixinJSBridgeReady', function() {
+        onBridgeReady();
+    });
+
+    function androidQQNewsShare(){
+        var fileref=document.createElement('script')//创建标签
+        fileref.setAttribute("type","text/javascript")//定义属性type的值为text/javascript
+        fileref.setAttribute("src", "http://mat1.gtimg.com/www/js/newsapp/jsapi/news.js?_tsid=1")//文件的地址
+    }
+    androidQQNewsShare();
+
+
+    //图片预加载
+    function loadImg(picArr, callback){
+        var index = 0;
+        var len = picArr.length;
+        function loads(){
+            var img = new Image();
+            img.src = picArr[index];
+            img.onload = function() {
+                if (index < len) {
+                    loads();
+                    var percent = Math.round(((index+1)/len)*100);
+                    $('.load_leng span').css({'width':percent+'%'});
+                    $('.load_num span').html(percent+'%');
+
+                }else{
+                    callback&&callback();
+                }
+                index++;
+            }
+            return img;
+        }
+
+        if(len > 0){
+            loads();
+        }
+    }
+    var pics = [
+        'img/zhu1_03_f.png',
+        'img/zhu1_03.png',
+        'img/xiaocao.png',
+        'img/wang.gif',
+        'img/time_10.png',
+        'img/time_08.png',
+        'img/time_04.png',
+        'img/qi_03.png',
+        'img/load_bianzi.gif',
+        'img/gm_num.png',
+        'img/gm3_01.png',
+        'img/gm1_18.png',
+        'img/gm1_15.png',
+        'img/gm1_13.png',
+        'img/gm1_10.png',
+        'img/gameimg.jpg',
+        'img/footer.png',
+        'img/fengmian.jpg',
+        'img/end_01.png',
+        'img/cover_10.png',
+        'img/cover_06.png',
+        'img/cover_03.png',
+        'img/c_desc.png',
+        'img/9.png',
+        'img/8.png',
+        'img/7.png',
+        'img/6.png',
+        'img/5.png',
+        'img/4.png',
+        'img/3.png',
+        'img/2.png',
+        'img/1.png',
+        'img/0.png',
+        'img/fm.jpg',
+        'img/bgg.png'
+    ];
+
+    var runIload=0;
+    var timeRunld=null;
+    var aNiuBgld = $(".loadniu_r").find('i');
+    function anmLoad(){
+        if(runIload < 5){
+            runIload++;
+            aNiuBgld.removeClass().addClass('anim' + runIload);
+
+        }else{
+            aNiuBgld.removeClass().addClass('anim0');
+            runIload = 0;
+        }
+        timeRunld = setTimeout(anmLoad,100);
+    }
+    anmLoad();
+
+    var oLoading=$("#loading");
+
+    //setTimeout(function(){
+
+        loadImg(pics, function(){
+            oLoading.addClass('fadeOut');
+            if(oLoading.attr('class')){
+                setTimeout(function(){
+                    oLoading.hide();
+                    oLoading.removeClass();
+
+                    $('.c_niurun').addClass('zoomIn');
+                    $('.c_finger').addClass('flash');
+                    $('.c_zhuanwo').addClass('tada');
+                    $('.c_xiaocao').addClass('leftMove');
+
+                }, 600);
+            }
+        });
+
+    //}, 1500);
+
+
+    var runI=0;
+    var timeRun=null;
+    var cNiu=$('.c_niu').find('i');
+    function anmLoading(){
+        if(runI < 5){
+            runI++;
+            cNiu.removeClass().addClass('anim' + runI);
+
+        }else{
+            cNiu.removeClass().addClass('anim0');
+            runI = 0;
+        }
+        timeRun = setTimeout(anmLoading,150);
+    }
+    anmLoading();
+
+
+
+    $('.c_niu').off().on('tap', function(){
+        $('.c_niurun').removeClass('zoomIn').addClass('fadeOut');
+        $('.c_finger').removeClass('flash').addClass('fadeOut');
+        $('.c_zhuanwo').removeClass('tada').addClass('fadeOut');
+        $('.c_niu').addClass('fadeOut');
+        $('.c_xiaocao').removeClass('leftMove');
+
+        $('.c_guize').show();
+        $('.c_guize').addClass('fadeIn');
+
+        setTimeout(function(){
+            $('.c_niurun').hide();
+            $('.c_finger').hide();
+            $('.c_zhuanwo').hide();
+            $('.c_niu').hide();
+
+
+        }, 700);
+    });
+
+
+    var backNum=0;
+
+    $('.c_guize').on('tap', function(){
+
+        $('.cover').addClass('fadeOut');
+        $('.game').addClass('fadeIn');
+        $('.game').show();
+        setTimeout(function(){
+            $('.cover').hide();
+            $('.cover').removeClass('fadeOut');
+            $('.game').removeClass('fadeIn');
+        }, 600);
+
+
+        $(".tip_finger").addClass('flash');
+        setTimeout(function(){
+            $(".tip_word").hide();
+            $(".tip_finger").hide();
+        }, 3000);
+
+
+
+        var runI2=0;
+        var timeRun2=null;
+        var aNiuBg = $(".niu").find('i');
+        function anmLoading2(){
+            if(runI2 < 5){
+                runI2++;
+                aNiuBg.removeClass().addClass('anim' + runI2);
+
+            }else{
+                aNiuBg.removeClass().addClass('anim0');
+                runI2 = 0;
+            }
+            timeRun2 = setTimeout(anmLoading2,150);
+        }
+        anmLoading2();
+
+
+        var runI3=0;
+        var timeRun3=null;
+        var wangerx = $(".wang").find('i');
+        function anmLoading3(){
+            if(runI3 < 3){
+                runI3++;
+                wangerx.removeClass().addClass('anim' + runI3);
+
+            }else{
+                wangerx.removeClass().addClass('anim0');
+                runI3 = 0;
+            }
+            timeRun3 = setTimeout(anmLoading3,100);
+        }
+        anmLoading3();
+
+        //计算定位像素
+        var arrPos=[];
+        var arrImgPos=[];
+        var aNiu = $(".niu");
+        for(var i = 0; i < aNiu.length; i++){
+            arrPos[i]={"left":aNiu[i].offsetLeft, "top":aNiu[i].offsetTop};
+            arrImgPos[i]={sClass:aNiu.eq(i).find('div').attr('class')};
+        }
+        for(var i = 0; i < arrPos.length; i++){
+            aNiu[i].style.left=arrPos[i].left+'px';
+            aNiu[i].style.top=arrPos[i].top+'px';
+        }
+
+
+        //圆
+        var oCircle = $('#circle');
+        var r = oCircle.offset().width/2;
+        var cx=oCircle.offset().left+oCircle.offset().width/2;
+        var cy=oCircle.offset().top+oCircle.offset().height/2;
+        var nx, ny;
+
+        //一秒倒计时
+        var sencend=45;
+        var miaoOne=4;
+        var oneMin=null;
+
+        setTimeout(function(){
+            oneMin=setInterval(function(){
+                fnoneMin();
+            }, 1000);
+        }, 3000);
+
+        function fnoneMin(){
+            sencend--;
+
+            $(".gmn_right span").html('<img src="http://mat1.gtimg.com/news/erxiao/'+miaoOne+'.png"><img src="http://mat1.gtimg.com/news/erxiao/'+sencend%10+'.png">');
+
+            if(sencend%10==0){
+                if(miaoOne==0){
+                    miaoOne=0;
+                }
+                miaoOne--;
+            }
+            if(sencend==0){
+                aNiu.hide();
+                clearInterval(oneMin);
+                clearInterval(niuTimer);
+
+
+                $('.time_end').show();
+
+
+
+                $(".time_end .looknum").on('tap', function(){
+                    $(".wxshare").show();
+                });
+
+                $(".wxshare").on('tap', function(){
+                    $(".wxshare").hide();
+                });
+                $(".shareimg").on('tap', function(){
+                    $(".wxshare").hide();
+                });
+            }
+
+        }
+
+        $('.time_end').find('.timerep').on('touchstart', function(){
+            replayGame();
+        });
+
+
+
+        var niu0=$('.niuqun0');
+        var niu1=$('.niuqun1');
+        var niu2=$('.niuqun2');
+        var niu3=$('.niuqun3');
+        var niu4=$('.niuqun4');
+
+
+        var inNum=0;
+        var outniuArr=[];
+        var outNum;
+        function niupengren(obj,gapLeft,gapRight){
+
+            move(obj[0], {left:gapLeft}, {ming:function(){
+                nx = obj.offset().left+obj.offset().width/2;
+                ny = obj.offset().top+obj.offset().height/2;
+
+                var a = cx-nx;
+                var b = cy-ny;
+                var c = Math.sqrt(a*a+b*b);
+                if(c>=r){
+
+                    //碰到边了
+                    //牛碰到边后才执行牛碰人
+                    if(aa<=(oWangW/2+obj.offset().width/2)&&bb<=(oWangH/2+obj.offset().height/2)){//牛碰人了
+                        aa=bb=50000;
+
+
+                        musicOff();
+                        niuZheng(obj);
+
+
+
+                        move(obj[0],{left:gapRight},{}, {complete:function(){
+                            musicOff();
+                            niuZheng(obj);
+
+                            backNum++;
+
+                            if(backNum%10 == 0){
+                                inNum++;
+                            }
+                            if(backNum>9){
+                                $(".gmn_left span").html('<img src="http://mat1.gtimg.com/news/erxiao/'+inNum+'.png" /><img src="http://mat1.gtimg.com/news/erxiao/'+backNum%10+'.png" />');
+                            }else{
+                                $(".gmn_left span").html('<img src="http://mat1.gtimg.com/news/erxiao/'+backNum%10+'.png" />');
+                            }
+
+
+                            setTimeout(function(){
+                                $('.time_word').html('你成功保住了<span>'+backNum+'</span>头牛，不愧是放牛的王二小！');
+                            },200);
+
+                            shareData = {
+                                title: "快来帮王二小抓牛呀！",
+                                desc: "你成功保住了"+backNum+"头牛，不愧是放牛的王二小！",
+                                img: "img/02.jpg",//分享图片
+                                link: "index.html"
+                            }
+
+
+                        }});
+                    }
+                }
+
+                if(c>=(r+15)){
+
+                    //牛出去了
+                     obj.addClass('fadeOut');
+
+                     $(".bg-audio").find(".audio-btn").removeClass('open').addClass('close');
+                     if ($(".bg-audio").find(".audio-btn").hasClass("open")) {
+                         $(".bg-audio").find('audio')[0].play();
+                     } else {
+                         $(".bg-audio").find('audio')[0].pause();
+                     }
+
+
+                     var outClass = obj.attr('class').split(' ')[1];
+                     outNum = outClass.charAt(outClass.length-1);
+                     outniuArr.push(outNum);
+                     outniuArr = removeDup(outniuArr);
+
+                     if(outniuArr.length==aNiu.length){
+                         clearInterval(niuTimer);
+                         clearInterval(oneMin);
+
+                         $('.break_end').show();
+                         $('.break_word').html("任务失败，<br />说好的放牛小能手呢？");
+
+                         $(".break_end").find('.showreslut').html('<img src="img/wxshare_03.png" />');
+                         $(".break_end .looknum").on('tap', function(){
+                            $(".wxshare").show();
+                         });
+
+                         $(".wxshare").on('tap', function(){
+                             $(".wxshare").hide();
+                         });
+                         $(".shareimg").on('tap', function(){
+                             $(".wxshare").hide();
+                         });
+
+                         shareData = {
+                             title: "快来帮王二小抓牛呀！",
+                             desc: "任务失败，说好的放牛小能手呢？",
+                             img: "img/02.jpg",//分享图片
+                             link: "index.html"
+                         }
+
+
+                     }
+
+                     clearInterval(obj[0].timer);
+
+                }
+
+            }},{duration:time});
+        }
+
+        function musicOff(){
+            $(".bg-audio").find(".audio-btn").removeClass('close').addClass('open');
+            if ($(".bg-audio").find(".audio-btn").hasClass("open")) {
+                $(".bg-audio audio")[0].play();
+            } else {
+                $(".bg-audio audio")[0].pause();
+            }
+        }
+
+        function niuZheng(obj){
+            if(obj.find('div').hasClass('niu_l')){
+                obj.find('div').removeClass().addClass('niu_r');
+            }else{
+                obj.find('div').removeClass().addClass('niu_l');
+            }
+        }
+
+
+        $('.break_end').find('.breakrep').on('touchstart', function(){
+            replayGame();
+
+
+        });
+
+
+
+        function replayGame(){
+            $('.time_end').hide();
+            $('.break_end').hide();
+            aNiu.show();
+            sencend=45;
+            miaoOne=4;
+            backNum=0;
+            inNum=0;
+            time=1300;
+            outniuArr=[];
+            outNum=0;
+            reTime=2000;
+
+            clearInterval(niuTimer);
+            clearInterval(oneMin);
+            $(".gmn_right span").html('<img src="img/4.png"><img src="img/5.png">');
+            $(".gmn_left span").html('<img src="img/0.png" />');
+            for(var i=0; i<aNiu.length; i++){
+                aNiu[i].style.left=arrPos[i].left+'px';
+                aNiu[i].style.top=arrPos[i].top+'px';
+                aNiu.eq(i).removeClass('fadeOut');
+                aNiu.eq(i).find('div').attr('class',arrImgPos[i].sClass);
+            }
+            niuTimer=setInterval(function(){
+                niuRun();
+            }, reTime);
+
+            oneMin=setInterval(function(){
+                fnoneMin();
+            }, 1000);
+
+        }
+
+
+
+        var time=1300;
+        var reTime=2000;
+        var niuTimer=null;
+        var niuNum;
+
+        clearInterval(niuTimer);
+        setTimeout(function(){
+            niuTimer=setInterval(function(){
+                niuRun();
+            }, reTime);
+        }, 3000);
+
+
+        var arrN=[0,1,2,3,4];
+        function niuRun(){
+
+            time-=35;
+            reTime-=80;
+            if(reTime<=30) {
+                reTime = 30;
+            }
+
+            if(time<=300){
+                time=300;
+            }
+
+
+            arrN.sort(function(){
+                return Math.random()-0.5;
+            });
+            niuNum=arrN.splice(0,1)[0];
+            if(arrN.length==0){
+                arrN=[0,1,2,3,4];
+            }
+            switch(niuNum){
+                case 0 :
+                    niupengren(niu0,10,arrPos[0].left);
+                    break;
+                case 1 :
+                    niupengren(niu1,10,arrPos[1].left);
+                    break;
+                case 2 :
+                    niupengren(niu2,(winW-niu2.offset().width-10),arrPos[2].left);
+                    break;
+                case 3 :
+                    niupengren(niu3,(winW-niu3.offset().width-10),arrPos[3].left);
+                    break;
+                case 4 :
+                    niupengren(niu4,(winW-niu4.offset().width-10),arrPos[4].left);
+                    break;
+            }
+
+        }
+
+
+        //touch
+        var oWang =$("#wang"), oWLeft=oWang.offset().left, oWTop=oWang.offset().top, oWangW = oWang.offset().width, oWangH = oWang.offset().height, winW = $(window).width(), winH = $(window).height(),renx,reny,aa,bb;
+
+        oWang.on('touchstart', function(ev){
+            var disX = ev.targetTouches[0].pageX - oWLeft;
+            var disY = ev.targetTouches[0].pageY - oWTop;
+            function fnMove(ev){
+                oWLeft=ev.targetTouches[0].pageX - disX;
+                oWTop=ev.targetTouches[0].pageY - disY;
+                if(oWLeft<0){
+                    oWLeft=0;
+                }else if(oWLeft>=winW-oWangW){
+                    oWLeft=winW-oWangW;
+                }
+                if(oWTop<0){
+                    oWTop=0;
+                }else if(oWTop>=winH-oWangH){
+                    oWTop=winH-oWangH;
+                }
+                oWang.css({'left':oWLeft});
+                oWang.css({'top':oWTop});
+
+                //算人牛距离
+                renx = oWLeft+oWangW/2;
+                reny = oWTop+oWangH/2;
+                aa = Math.abs(nx-renx);
+                bb = Math.abs(ny-reny);
+
+            }
+            oWang.on('touchmove',fnMove);
+
+            function fnEnd(ev){
+                oWang.off('touchmove', fnMove);
+                oWang.off('touchend', fnEnd);
+            }
+            oWang.on('touchend',fnEnd);
+        });
+
+
+
+
+    });
+
+
+    function move(obj, json, moving, options){
+        options=options||{};
+        options.duration = options.duration||1000;
+        moving=moving||{};
+
+        var dis={};
+        var start={};
+        for(var name in json){
+            start[name]=parseFloat(getStyle(obj,name));
+            dis[name]=json[name]-start[name];
+        }
+
+        var count=Math.round(options.duration/30);
+        var n=0;
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function(){
+            n++;
+            for(var name in json){
+
+                var a=n/count;
+                var cur=start[name]+dis[name]*a;
+
+                moving.ming && moving.ming();
+
+                if(name=='opacity'){
+                    obj.style.opacity=cur;
+                    obj.style.filter='alpha(opacity:'+cur*100+')';
+                }else{
+                    obj.style[name]=cur+'px';
+                }
+            }
+
+            if(n==count){
+                clearInterval(obj.timer);
+                options.complete&&options.complete();
+            }
+        }, 30);
+
+
+    }
+
+    function getStyle(obj, sName){
+        if(obj.currentStyle){
+            return obj.currentStyle[sName];
+        }else{
+            return getComputedStyle(obj, false)[sName];
+        }
+    }
+
+    function removeDup(arr){
+        var arr2 = [];
+        for(var i=0;i<arr.length;i++){
+            if(findInArr(arr2,arr[i])){
+                arr2.push(arr[i]);
+            }
+        }
+        return arr2;
+    }
+    function findInArr(arr,iNum){
+        for(var i=0;i<arr.length;i++){
+            if(arr[i]==iNum){
+                return false;
+            }
+        }
+        return true;
+    }
+</script>
+<!-- 全站流量统计代码 开始 -->
+<!--ol20130819--><!--pgv 20140225v1.0.3 by Austinjin--><script language="javascript"src="http://pingjs.qq.com/ping.js"></script>
+
+<script>
+(function(){var _href=location.href,_search=location.search.toLowerCase().replace(/adtag=client\.qq\.\d+_\.0/,'from=tips'),arr=['aio','tips'],type='',from='',_arr=[];if(_href.search(/from=/)!==-1){_arr=_href.split('&');for(var j=0,len=_arr.length;j<len;j++){if(_arr[j].indexOf('qqcom_pgv_from=')>-1){from=_arr[j].indexOf('#')>-1?_arr[j].substring(5,_arr[i].indexOf('#')):_arr[j].substring(5)}}}if(window['ARTICLE_INFO']&&ARTICLE_INFO['catalog_full']){for(var i=0,len=arr.length;i<len;i++){if(_search.search(arr[i])!==-1){type=arr[i];addEvent(document,'click',function(e){_formFun(e,type)})}}newPgvDetail()}else{if(typeof(pgvMain)=='function'){if(typeof(whatCatalog)!='undefined'){pvCSTM=whatCatalog}pgvInfo="F."+from||'def';pgvMain({pgUserType:pgvInfo})}}function newPgvDetail(){var catalogPathR1=ARTICLE_INFO.catalog_full.toString().replace(/-/g,".");var catalogPath=catalogPathR1.toString().replace(/_/g,"-");if(ARTICLE_INFO.topic.name.length>0){var L="L.",Z="Z."+catalogPath+"."+ARTICLE_INFO.topic.name}else{var L="L."+catalogPath,Z="Z."}var W="W."+ARTICLE_INFO.type,M="M."+ARTICLE_INFO.tpl.type+ARTICLE_INFO.tpl.stype,P="P."+ARTICLE_INFO.site.toString().replace(/_/g,"-"),F="F."+from||'def',pgvInfo=L+"_"+Z+"_"+W+"_"+M+"_"+P+"_"+F;if(typeof(pgvMain)=='function'){if(typeof(pgvInfo)!='undefined'){pgvMain({pgUserType:pgvInfo})}}}function addEvent(node,type,listener){if(node.addEventListener){node.addEventListener(type,listener,false);return true}else if(node.attachEvent){node['e'+type+listener]=listener;node[type+listener]=function(){node['e'+type+listener](window.event)};node.attachEvent('on'+type,node[type+listener]);return true}return false}function _formFun(e,t){var e=window.event||e,target=e.srcElement||e.target,tag=target.tagName.toLowerCase(),href=target.href,str='',arr=[];if(tag=='img'){target=target.parentNode;tag=target.tagName.toLowerCase();href=target.href}if(href.indexOf('qqcom_pgv_from=')>-1)return;if(tag=='a'&&target.href.indexOf('qq.com')>-1){if(target.href.indexOf('?')==-1){str=href+'?qqcom_pgv_from='+t}else{arr=href.split('?');str=arr[0]+'?qqcom_pgv_from='+t+'&'+arr[1]}target.href=str}}})()</script><!--pgv 20140225v1.0.3 end-->
+<!-- 视频来源ptag --><script src="http://mat1.gtimg.com/v/ptag/ptag_1.1.js" async="true"></script>
+<!--[if !IE]>|xGv00|8c1fdc44d118845e49a64996e4f5ea29<![endif]--><!--[if !IE]>|xGv00|1a3a193a0249b0401b1fc3f77d548441<![endif]-->
+<!--普通专题pgv统计代码请放在<body>标签下方,重大项目报道及频道首页改版pgv统计代码放于首屏后.-->
+<!-- 全站流量统计代码 结束 -->
+</body>
+</html>

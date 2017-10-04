@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>「挑战五子棋」我已经到了出神入化的地步，无人能及！</title>
+<link href="img/game.css" rel="stylesheet" type="text/css"/>
+<script src="open/js/jweixin-1.0.0.js"></script>
+<script src="jquery/1.9.1/jquery.min.js"></script>
+<script src="img/game.js"></script>
+<meta content="width=640, initial-scale=0.5, maximum-scale=1, minimum-scale=0.5" name="viewport">
+<link href="wuziqi/css/wuzi.css" rel="stylesheet" type="text/css">
+<style>
+#spn { position: fixed; left:50% !important; margin-left: -160px; width:320px; height: 50px; bottom: 0; z-index: 100;}
+</style>
+<!--[if lt IE 9]>
+<script> alert("对不起，您的浏览器不支持HTML5，请升级浏览器至IE9、firefox或者谷歌浏览器！")</script>
+<![endif]-->
+</head>
+<body>
+<div class="game-box">
+  <div class="game-box-title"><span id="reckonTime">0</span>"</div>
+  <div class="game-box-body">
+    <div class="game-box-winner" id="winner"></div>
+    <div class="game-box-loser" id="loser"></div>
+    <div class="game-box-red" id="red"></div>
+    <div class="game-box-gesture-open" id="gestureOpen"></div>
+    <div class="game-box-gesture-close" id="gestureClose"></div>
+    <canvas id="wuzi" class="wuzi"></canvas>
+  </div>
+  <div class="btn-box"> <a href="javascript:" id="regretBtn">悔   棋(3)</a><a href="javascript:" id="restartBtnEcho">重新开始</a></div>
+</div>
+<div class="menu-box" id="menuBox">
+  <div class="overcast" id="overcast"></div>
+  <div class="menu">
+    <div class="menu-body" id="menuBody">
+      <div class="h1" id="h1"></div>
+      <div class="h2" id="h2"></div>
+      <a href="javascript:" id="restartBtn">重新挑战此局</a><a href="javascript:" id="shareBtnEcho">分享后关注我们</a><a href="http://mp.weixin.qq.com/s?__biz=MzAwNDIwOTQzMw==&mid=203006700&idx=1&sn=c48306f4bcbf3d1efe4de7296d509442#rd" id="goMoneyBtn">关注蓝空科技</a> <a href="javascript:" id="shareBtn">分享挑战下一局</a> <a href="javascript:" id="vsBtn">挑战新棋局</a> </div>
+  </div>
+</div>
+<div class="share-box" id="shareBox">
+  <div class="share-overcast" id="shareOvercast"></div>
+  <div class="share-bg" id="shareBg"></div>
+</div>
+<div class="banner"><div id="spn"></div></div>
+<script type="text/javascript" src="wuziqi/js/wuzi.js"></script>
+<div class="dn">
+  <audio src="audio/click.wav" id="clickAudio" preload="auto"></audio>
+  <audio src="audio/click.wav" id="selectAudio" preload="auto"></audio>
+</div>
+</body>
+</html>

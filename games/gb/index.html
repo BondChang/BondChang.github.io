@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>海上调情师，谁最强？帮帮我吧，亲</title>
+  <link rel="stylesheet" href="styles/build.css?28f55008"/>
+</head>
+<body>
+
+<img src="http://mat1.gtimg.com/news/sqs/start_03.png" width="0" height="0" style="position:absolute">
+
+  <div id="wrap">
+    <!-- home -->
+
+    <div id="home"><div class="page">
+      <img src="images/banner.png" class="banner" />
+      <span class="btn-game-ready" data-type="onstreet">进···入</span> 
+    </div></div>
+
+
+    <!-- game -->
+    <div id="game" class="scene"><div class="page">
+      <div class="tiles">
+        <!-- tiles -->
+      </div>
+      <span class="time-counter">000"</span>
+    </div></div>
+
+    <!-- over -->
+    <div id="over" class="scene"><div class="page">
+
+      <div class="info">
+        <h3 class="info-title">调情大师</h3>
+        <p class="info-text">常备冈本，你可以飞得更高！</p>
+        <p>
+          <img class="info-img" max-height="120px" src="images/trans/1.png"/>
+        </p>
+      </div>  
+
+      <div class="over-footer">
+        <div class="nav">
+
+          <p class="score">
+            <span id="score-new">得分:0</span>
+            <span id="score-max">最佳:999</span>
+          </p>
+          
+          <p class="btn-group">
+            <a id="gohome" href="javascript:void(0);">返回</a>
+            <a id="open-share" href="javascript:void(0);">分享</a>
+            <a id="restart" href="javascript:void(0);">重来</a>
+          </p>
+        </div>
+        
+      </div>
+
+    </div></div>
+
+    <div class="share-bg"></div>
+
+  </div>
+
+  <script>
+
+  (function() {
+
+    window.APP_HOST = function() {
+      var host = 'http://campaign.arkrdigital.com';
+      return host.replace(/\/+$/, '');
+    }();
+
+    window.dataForWeixin = {
+      appId: "",
+      MsgImg: window.APP_HOST + "/gb/images/share.jpg",
+      TLImg: window.APP_HOST + "/gb/images/share.jpg",
+      url:  window.APP_HOST + "/gb",
+      title: "今夜，我只做一件事...",
+      desc: "没有花，没有电影，也没有表白，只做【海上调情师】，一个来自欲望之海的你...",
+      fakeid: "",
+      callback: function(){
+        if (ga) {
+          ga('send', 'event', 'Click', '分享成功');
+        }
+      }
+    };
+
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+      WeixinJSBridge.call('showOptionMenu');
+    });
+        
+    var onBridgeReady = function() {
+      WeixinJSBridge.on('menu:share:appmessage', function(argv) {
+        WeixinJSBridge.invoke('sendAppMessage',{
+          "appid":dataForWeixin.appId,
+          "img_url":dataForWeixin.MsgImg,
+          "img_width":"120",
+          "img_height":"120",
+          "link":dataForWeixin.url,
+          "desc":dataForWeixin.desc,
+          "title":dataForWeixin.title
+        }, function(res){(dataForWeixin.callback)();});
+      });
+
+      WeixinJSBridge.on('menu:share:timeline', function(argv){
+        (dataForWeixin.callback)();
+        WeixinJSBridge.invoke('shareTimeline',{
+          "img_url":dataForWeixin.TLImg,
+          "img_width":"120",
+          "img_height":"120",
+          "link":dataForWeixin.url,
+          "desc":dataForWeixin.desc,
+          "title":dataForWeixin.title
+        }, function(res){});
+      });
+
+      WeixinJSBridge.on('menu:share:weibo', function(argv){
+        WeixinJSBridge.invoke('shareWeibo',{
+          "content":dataForWeixin.title,
+          "url":dataForWeixin.url
+        }, function(res){(dataForWeixin.callback)();});
+      });
+
+      WeixinJSBridge.on('menu:share:facebook', function(argv){
+        (dataForWeixin.callback)();
+        WeixinJSBridge.invoke('shareFB',{
+          "img_url":dataForWeixin.TLImg,
+          "img_width":"120",
+          "img_height":"120",
+          "link":dataForWeixin.url,
+          "desc":dataForWeixin.desc,
+          "title":dataForWeixin.title
+        }, function(res){});
+      });
+    };
+
+    if (document.addEventListener) {
+      document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    } else if (document.attachEvent) {
+      document.attachEvent('WeixinJSBridgeReady'   , onBridgeReady);
+      document.attachEvent('onWeixinJSBridgeReady' , onBridgeReady);
+    }
+  })();  
+  </script>
+  <script src="scripts/build.js?0532eb45"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-51173280-1', 'arkrdigital.com');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
+

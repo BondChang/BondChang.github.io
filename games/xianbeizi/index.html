@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="game-id" content="xianbeizi" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,initial-scale=1,user-scalable=no,minimum-scale=1,maximum-scale=1">
+<meta content="no-cache" http-equiv="Cache-control">
+<title>掀美女被子</title>
+<link rel="stylesheet" href="css/xianbeizi.css" type="text/css">
+<script type="text/javascript" src="js/jquery-1.5.2.min.js"></script>
+<script language="javascript">
+var jinduImg1 = new Image();
+jinduImg1.src = "image/loading-bg.gif";//加载滚动条
+var jinduImg2 = new Image();
+jinduImg2.src = "image/cover.png";//加载被子
+var jinduImg3 = new Image();
+jinduImg3.src = "image/0114092845a449410a544fefbf118c1e92148b16.jpg";
+
+ var imgArray = [
+	{img1:'image/cover.png', img2: 'image/0114092845a449410a544fefbf118c1e92148b16.jpg'},
+	{img1:'image/cover.png', img2: 'image/01140912f12ca741aa26407191dedb4f5a92b06e.jpg'},
+	{img1:'image/cover.png', img2: 'image/01140912ee6dcea7bc104e7c92a64f6415d33c46.jpg'},
+	{img1:'image/cover.png', img2: 'image/01140912c1b00cb5245f43c5bbc79b48821e176d.jpg'},
+	{img1:'image/cover.png', img2: 'image/01140912efa5d625cd4848529f3a164d89a2aef6.jpg'},
+	{img1:'image/cover.png', img2: 'image/01140912b9aa1cbb951f4ce3b7beaa6f72c4a5e9.jpg'},
+	{img1:'image/cover.png', img2: 'image/0114091214b60667dba44ca39e719333e1549a30.jpg'},
+	{img1:'image/cover.png', img2: 'image/0114091227ff7e3a7b18442b9e182452cb501008.jpg'},
+	{img1:'image/cover.png', img2: 'image/01140912a747f1e8f6c04db7a6cab536dd027fbc.jpg'},
+	{img1:'image/cover.png', img2: 'image/01140912e65e606ff3164ac395dc29e3b72a56f0.jpg'},
+	{img1:'image/cover.png', img2: 'image/0114091279382b54b33f4468965310c40d19c757.jpg'},
+	{img1:'image/cover.png', img2: 'image/01140912a7a26bac507641cbbc7146fbd9b6504c.jpg'},
+	{img1:'image/cover.png', img2: 'image/01140912c0a2865768024a41b343c5f98398d615.jpg'},
+	{img1:'image/cover.png', img2: 'image/0114091220d2956abfdf40fb9f261cdbdf8d014d.jpg'},
+	{img1:'image/cover.png', img2: 'image/01140912eb41881718ff449799ac17ad68a56042.jpg'},
+	{img1:'image/cover.png', img2: 'image/0114091240b4dd187528421f8feac26b9b2be559.jpg'},
+	{img1:'image/cover.png', img2: 'image/0114091205b68ba0c5194fd1b45a73e912e8ccbe.jpg'},
+	{img1:'image/cover.png', img2: 'image/01140912007f78c244b142a18a7edf7b0cc59b8c.jpg'},
+	{img1:'image/cover.png', img2: 'image/01140912e9f9372fa58e4bdcaa713966b916a30f.jpg'},
+	{img1:'image/cover.png', img2: 'image/011409125a6b404976414c7eb4dd7482a77022aa.jpg'},
+	{img1:'image/cover.png', img2: 'image/01140912f13f530f9c804a98b9ef7c4bf276064a.jpg'},
+	{img1:'image/cover.png', img2: 'image/01140912357854fae688416080d8a20f3d2ca6dd.jpg'},
+	{img1:'image/cover.png', img2: 'image/011409121c04bc8302a24c5ca0566cdb103bd605.jpg'},
+	{img1:'image/cover.png', img2: 'image/011409126222cad7752245089761585eff70bf3e.jpg'},
+	{img1:'image/cover.png', img2: 'image/011409129dfab3de157444fb80e7e29622f074f5.jpg'},
+	{img1:'image/cover.png', img2: 'image/0114091299bc05bfe33c4968b140b435274c2bf4.jpg'},
+	{img1:'image/cover.png', img2: 'image/01140912a10e5c6e8e9b477eaa23d40930d4cb34.jpg'},
+	{img1:'image/cover.png', img2: 'image/01140912e70cd25bcd774470ac67a102a2199b82.jpg'},
+	{img1:'image/cover.png', img2: 'image/011409124fd24c89c6cb4544aa87bbd02e348e77.jpg'},
+	{img1:'image/cover.png', img2: 'image/0114091235340f782b4843f3ba5fd1e5a1437960.jpg'}
+ ];
+ var isClick=false; 
+ var l=0;
+ var sum=0;
+ var jindu = 0;
+function chk(){
+  l--;
+  jindu = parseInt((sum-l)*100/sum);//进度数值
+  document.getElementById("jindubi").innerText=""+jindu+"%";
+  if(jindu==100){
+	  $("#g_loading").hide();
+	  if($("div.start").is(':hidden')){
+		  $('#xia_hua').show();
+	  }
+  }
+}
+
+sum=l=imgArray.length;
+for (var i=0;i<l;i++){
+	var imgLoad = new Image();
+	imgLoad.src = imgArray[i].img2;
+	imgLoad.onload=chk;
+	imgLoad.onerror=chk;//无论图片是否加载成功，都执行指定方法
+}
+
+ var succeedNum = 0,imgArrIndex=0;
+ $(document).ready(function() {
+ 	var startX = 0, startY = 0;  
+    $("div.start").click(function(){
+    	isClick=true;
+      SysSecond = parseInt($("#remainSeconds").html()); //这里获取倒计时的起始时间 
+      $("div.gray").hide(); 
+	  $("#g_logo").hide();
+	  if(jindu<100){
+		  $("#g_loading").show();
+	  }else{
+		  $('#xia_hua').show();
+	  }
+    });
+
+    function SetRemainTime() {
+       if (SysSecond > 0) { 
+        var second = Math.floor(SysSecond % 60);// 计算秒     
+        $("#remainTime").html( second + "秒");
+        SysSecond = SysSecond - 1; 
+       } else {
+    	$("#remainTime").html("0秒");
+        document.removeEventListener('touchstart', touchSatrtFunc, false);
+   	   	document.removeEventListener('touchend', touchEndFunc, false);//解除下滑事件
+        window.clearInterval(InterValObj);//停止间隔函数 
+	   	window.location.href = "xianbeizi_result.html?sign="+succeedNum;
+       } 
+    } 
+    function touchSatrtFunc(event){
+	   event.preventDefault();
+	   startY=event.touches[0].pageY;
+	}
+	function touchEndFunc(event){
+	   event.preventDefault();
+	   if(event.changedTouches[0].pageY>startY) {
+		  var $XiaHua = $('#xia_hua');
+		  if($XiaHua.is(':visible')) {
+			  $XiaHua.hide();
+			  SetRemainTime();
+			  $(".quilt").stop(true,true).animate({
+				 	 "margin-top":"300"
+				 },function(){
+					 succeedNum++;
+					 imgArrIndex++;
+					 $(".succeedNum").html(succeedNum);
+					 if(imgArrIndex>=imgArray.length){
+						 imgArrIndex=0;
+					 }
+					 switchImg(imgArrIndex);
+					 $(this).css("margin-top","0");
+				});
+			  InterValObj = window.setInterval(SetRemainTime, 1000); //间隔函数，1秒执行 
+		  }else{
+			 $(".quilt").stop(true,true).animate({
+			 	 "margin-top":"300"
+			 },function(){
+				 succeedNum++;
+				 imgArrIndex++;
+				 $(".succeedNum").html(succeedNum);
+				 if(imgArrIndex>=imgArray.length){
+					 imgArrIndex=0;
+				 }
+				 switchImg(imgArrIndex);
+				 $(this).css("margin-top","0");
+			});
+		 }
+	   }
+	}  
+	function keHuaDong(){
+		if(jindu>=100 && isClick){
+			  document.addEventListener('touchstart', touchSatrtFunc, false);
+			  document.addEventListener('touchend', touchEndFunc, false);
+			  window.clearInterval(keHuaDongObj);
+		}
+	}
+	keHuaDongObj = window.setInterval(keHuaDong, 10);
+ }); 
+
+  function switchImg(type) {
+    $(".img1").attr('src',imgArray[type].img1);
+    $(".img2").attr('src',imgArray[type].img2);
+ }
+</script>
+</head>
+
+<body style="background:#000;">
+<div class="xy_game">
+  <div id="g_logo"><img src="image/gametitle.png" height="54" width="220"></div>
+  <div id="g_loading">
+    <div class="jindubi" id="jindubi">0%</div>
+  </div>
+  <div class="x_header">
+    <div class="x_time" id="remainTime"></div>
+    <div class="y_num"><img src="image/head.png" height="45" width="35"><span>X <b class="succeedNum"> 0</b>位</span></div>
+  </div>
+  <div class="beauty"><img src="image/0114092845a449410a544fefbf118c1e92148b16.jpg" class="img2" height="438" width="320"></div>
+  <div class="quilt"><img src="image/cover.png" class="img1" height="266" width="320"></div>
+  <div class="xia_hua" id="xia_hua">连续向下滑动被子</div>
+  <div class="gray start"><img src="image/start.png" height="58" width="202"></div>
+  <div class="succgray"></div>
+</div>
+<div id="remainSeconds" style="display:none">10</div>
+<div style="display:none;"> 
+ <script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3c2598d84057d2e8a32e3228117c2f99' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</div>
+<div style="text-align: center; display: block; font-size: 0px; width: 100%; height: 60px; opacity: 0.9; position: fixed; bottom: 0px; background-color: rgb(0, 0, 0); z-index: 2147483646;" id="cproIframe1Wrap" baiduxuanting="baiduCproXuantingRoof"><div style="width:100%;height:60px;position:relative;margin:0 auto;"><iframe width="100%" height="60px" frameborder="0" align="center,center" style="margin-left:px" allowtransparency="true" scrolling="no" marginheight="0" marginwidth="0" _src="../../ad.html"" id="cproIframe1" src="../../ad.html"></iframe></div></div>
+</body>
+</html>

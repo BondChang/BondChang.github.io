@@ -1,0 +1,37 @@
+{
+        "resources": [
+                        {
+                                "name": "game",
+                                "type": "sheet",
+                                "url": "assets/game1.json"
+                        },
+                        
+                        {
+                                "name": "role_run_json",
+                                "type": "json",
+                                "url": "assets/role_run.json"
+                        }, 
+                        {
+                                "name": "role_run_image",
+                                "type": "image",
+                                "url": "assets/run.png"
+                        }, 
+                        {
+                                "name": "role_kill_movie_json",
+                                "type": "json",
+                                "url": "assets/role_kill_movie.json"
+                        }, 
+                        {
+                                "name": "role_kill_movie_image",
+                                "type": "image",
+                                "url": "assets/role_kill_movie.png"
+                        }
+        ],
+
+        "groups": [
+                    {
+                        "name": "preload",
+                        "keys": "game, role_run_image,role_run_json, role_kill_movie_json, role_kill_movie_image, star_movie"
+                    }
+                  ]
+}

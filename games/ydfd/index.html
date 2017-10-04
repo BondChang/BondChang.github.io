@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>勇躲飞刀</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+    <meta name="full-screen" content="true"/>
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="360-fullscreen" content="true"/>
+	<link href="sj/html5/css/index.css" rel="stylesheet">
+	
+    <style>
+        body {
+            text-align: center;
+            background: #000000;
+            padding: 0;
+            border: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        html {
+            -ms-touch-action: none; /* Direct all pointer events to JavaScript code. */
+        }
+    </style>
+</head>
+<body>
+<div style="display:inline-block;width:100%; height:100%;margin: 0 auto; background: black; position:relative;"
+     id="gameDiv">
+    <canvas id="gameCanvas" width="800" height="440" style="background-color: #000000"></canvas>
+</div>
+<script>
+var mebtnopenurl = "h5/";
+var gamename="Taomingjiong2";
+var islandscape = 1;
+</script>
+<script type="text/javascript" src="sj/html5/js/h5.js?v2"></script>
+<script>var document_class = "GameApp";</script>
+<script src="launcher/egret_loader.js"></script>
+<script src="launcher/game-min.js"></script>
+
+<script>
+H5Interface.isSpecial = true;//true为横屏,false为竖屏
+
+var resultContent ;
+
+function result()
+{
+	var shareMsg = "";
+	if (H5Interface.score <= 10)
+	{
+		resultContent = "初上刀山，躲过了<span>"+ H5Interface.score + "</span>把刀，吓出一身冷汗！<p class='mt50'>你打败了全国<i>" + 10 + "%</i>的囧囧们！</p>";
+		shareMsg = "初上刀山，躲过了"+ H5Interface.score + "把刀，吓出一身冷汗！你打败了全国" + 10 + "%的囧囧们!";
+	}
+	else if (H5Interface.score <= 25)
+	{
+		resultContent = "哇塞，我躲过了<span>"+ H5Interface.score + "</span>把刀，获得【小试身手】称号！<p class='mt50'>你打败了全国<i>" + 50 + "%</i>的囧囧们！</p>";
+		shareMsg = "哇塞，我躲过了"+ H5Interface.score + "把刀，获得【小试身手】称号！你打败了全国50%的囧囧们！";
+	}
+	else if (H5Interface.score <= 50)
+	{
+		resultContent = "我居然躲过了<span>"+ H5Interface.score + "</span>把刀，获得【绝世高手】称号 ！<p class='mt50'>你打败了全国<i>" + 80 + "%</i>的囧囧们！</p>";
+		shareMsg = "我居然躲过了"+ H5Interface.score + "把刀，获得【绝世高手】称号！你打败了全国80%的囧囧们";
+	}
+	else if (H5Interface.score <= 80)
+	{
+		resultContent = "<span>"+ H5Interface.score + "</span>把刀都砍不死我！ <p class='mt50'>你打败了全国<i>" + 90 + "%</i>的囧囧们！</p>";
+		shareMsg = H5Interface.score + "把刀都砍不死我！ 你打败了全国90%的囧囧们!";
+	}
+	else
+	{
+		resultContent = "吾已超神，<span>"+ H5Interface.score + "</span>把青龙偃月刀也砍不死我这萌萌的身躯！<p class='mt50'>你打败了全国<i>" + 99 + "%</i>的囧囧们！</p>";
+		shareMsg = "吾已超神，"+ H5Interface.score + "把青龙偃月刀也砍不死我这萌萌的身躯！你打败了全国99%的囧囧们！";
+	}
+
+	dp_submitScore(H5Interface.score,shareMsg);
+	return resultContent;
+}
+
+</script>
+<script>
+    egret_h5.startGame();
+</script>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+ <script type="text/javascript" src="js/game9g.utils.js"></script>
+<script language=javascript>
+		var mebtnopenurl = 'http://app.gzlankong.com/200game/';
+		window.shareData = {
+		        "imgUrl": "http://app.gzlankong.com/200game/games/ydfd/icon.png",
+		        "timeLineLink": "http://t.cn/RhMhLeq",
+		        "tTitle": "勇躲飞刀",
+		        "tContent": "勇躲飞刀,快来试试你的能力吧！"
+		};
+				
+		function goHome(){
+			window.location=mebtnopenurl;
+		}
+		function clickMore(){
+			if((window.location+"").indexOf("f=zf",1)>0){
+				window.location = "http://app.gzlankong.com/200game";
+			 }
+			 else{
+				goHome();
+			 }
+		}
+		function dp_share(){
+			document.getElementById("share").style.display="";
+			
+		}
+		function dp_Ranking(){
+			window.location=mebtnopenurl;
+		}
+
+		function showAd(){
+		}
+		function hideAd(){
+		}
+		function rank(score) {
+	score = typeof(score) == "undefined" ? 0 : parseInt(score);
+	var game = 'ydfd';
+	var openId = localStorage.getItem('oid');
+	if (openId == null) {
+		openId = "";
+	}
+	var description = '躲过'+score+'次';
+	setTimeout(function() {
+		if (confirm("要将成绩提交到火爆朋友圈游戏排行榜吗？")) {
+			document.location.href = "http://app.gzlankong.com/200game/rank.html?gid="+game+"&oid="+openId+"&score="+score+"&desc="+encodeURIComponent(description);
+		}
+	}, 500);
+}
+		document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+		    
+		    WeixinJSBridge.on('menu:share:appmessage', function(argv) {
+		        WeixinJSBridge.invoke('sendAppMessage', {
+		            "img_url": window.shareData.imgUrl,
+		            "link": window.shareData.timeLineLink,
+		            "desc": window.shareData.tContent,
+		            "title": window.shareData.tTitle
+		        }, onShareComplete);
+		    });
+
+		    WeixinJSBridge.on('menu:share:timeline', function(argv) {
+		        WeixinJSBridge.invoke('shareTimeline', {
+		            "img_url": window.shareData.imgUrl,
+		            "img_width": "640",
+		            "img_height": "640",
+		            "link": window.shareData.timeLineLink,
+		            "desc": window.shareData.tContent,
+		            "title": window.shareData.tTitle
+		        }, onShareComplete);
+		    });
+		}, false);
+		</script>
+		<div id=share style="display: none">
+			<img width="100%" src="share.png"
+				style="position: fixed; z-index: 9999; top: 0; left: 0; display: "
+				ontouchstart="document.getElementById('share').style.display='none';" />
+		</div>
+			<script type="text/javascript">
+            var myData = { gameid: "ydfd" };
+			// var domain = ["oixm.cn", "hiemma.cn", "peagame.net"][parseInt(Math.random() * 3)];
+			//window.shareData.timeLineLink = "http://"+ parseInt(Math.random()*100000) +"."+ myData.gameid +"."+domain+"/gamecenter.html?gameid=" + myData.gameid + (localStorage.myuid ? "&uid=" + localStorage.myuid : "");
+			function dp_submitScore(score,stitle){
+						myData.score = parseInt(score);
+						myData.scoreName ="躲过"+score+"次飞刀";		
+						document.title=window.shareData.tTitle=stitle;
+						game9g.utils.shareConfirm("你竟然成功躲过"+score+"次飞刀，快让小伙伴们见识见识吧！",function(){dp_share();});
+			}
+			function onShareComplete(res) {
+              rank(myData.score);
+	        }
+			</script>
+			 
+</body>
+</html>
