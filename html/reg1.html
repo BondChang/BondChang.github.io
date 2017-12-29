@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<link rel="stylesheet" type="text/css" href="resources/styles/clicki.web.css?V=20120501" media="screen" />
+<link rel="stylesheet" type="text/css" href="resources/styles/clicki.loginandreg.css?V=20120501" media="screen" />
+<link rel="stylesheet" type="text/css" href="resources/styles/clicki.webkitanimation.css?V=20120501" media="screen" />
+<title>简洁大气的登录和注册页面</title>
+<!--[if lte IE 9 ]><link rel="stylesheet" href="resources/styles/clicki.iehotfix.css?V=20120501" /><![endif]-->
+<!--[if lte IE 9]>
+<style>
+body {background:#2f7fb2 url(resources/styles/images/topbg_01.png?V=20120501) top center no-repeat;}
+html{height:100%;overflow:hidden;background:#2f7fb2 url(resources/styles/images/topbg_01.png?V=20120501) top center no-repeat;}
+</style>
+<![endif]-->
+</head>
+<body>
+
+<div class="theCenterBox" style="">
+  <style>
+.theCenterBox{width:670px; margin-top:200px;}
+</style>
+  <div class="theLoginBox" style="width:657px">
+    <div class="loginTxt">银行卡绑定</div>
+    <form id="leftForm" action="reg.html" method="post">
+      <div class="theLoginArea" id="loginBox">
+        <p style="position: relative;">
+          <label for="LoginForm_email">银行卡账号：</label>
+          <input placeholder="请输入您的银行卡账号" name="LoginForm[email]" id="LoginForm_email" type="password" maxlength="255" />
+          <span>请输入您的邮箱</span> </p>
+        <p style="position: relative;">
+          <label for="LoginForm_password">身份证号码：</label>
+          <input placeholder="请输入您的身份证号码" name="LoginForm[password]" id="LoginForm_password" type="password" maxlength="16" />
+          <span>请输入您的密码</span> </p>
+        <p style="position: relative;">
+          <label for="LoginForm_checksum">银行预留手机号：</label>
+          <input placeholder="请输入您的银行预留手机号码" name="LoginForm[checksum]" id="LoginForm_checksum" type="text" value="" />
+          <span>请输入您的邀请码</span> </p>
+        <div class="loginSubmitBnt">
+          <div class="">
+            <a href="reg2.html"><input type="button" value="下一步" style="width:70px;height:50px;" ></input></a>
+           
+          </div>
+        </div>
+      </div>
+      <div class="theRegArea fixRegHeight" id="reg_reg">
+        <h2>已经有账号？</h2>
+        <br/>
+        <a class="reg_login" href="index1.html"></a> </div>
+    </form>
+  </div>
+  
+ 
+</div>
+</body>
+</html>

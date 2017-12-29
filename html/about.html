@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>拇指控</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="css/orman.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/nivo-slider.css" type="text/css" media="screen" />	
+
+<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/ddsmoothmenu.js">
+
+
+</script>
+
+<script language="javascript" type="text/javascript">
+
+ddsmoothmenu.init({
+	mainmenuid: "templatemo_menu", //menu DIV id
+	orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
+	classname: 'ddsmoothmenu', //class added to menu's outer DIV
+	//customtheme: ["#1c5a80", "#18374a"],
+	contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+})
+
+function clearText(field)
+{
+    if (field.defaultValue == field.value) field.value = '';
+    else if (field.value == '') field.value = field.defaultValue;
+}
+</script>
+
+<link rel="stylesheet" href="css/slimbox2.css" type="text/css" media="screen" /> 
+<script type="text/JavaScript" src="js/slimbox2.js"></script> 
+<!--  t e m p l a t e m o  372  t i t a n i u m  -->
+</head>
+<body>
+
+<div id="templatemo_wrapper">
+	<div id="templatemo_header">
+    	
+    	<div id="templatemo_search">
+            <form action="#" method="get">
+              <input type="text" value="Search..." name="keyword" id="keyword" title="keyword" 
+              				onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" />
+              <input type="submit" name="Search" value="" alt="Search" id="searchbutton" title="Search" class="sub_btn"  />
+            </form>
+        </div>
+    </div>
+    <div id="templatemo_menu" class="ddsmoothmenu">
+        <ul>
+            <li><a href="index.html" class="selected">主页</a></li>
+            <li><a href="index_flash.html">网站理念</a></li>
+            <li><a href="about.html">个人信息</a>
+                <ul>
+                    
+              	</ul>
+            </li>
+            <li><a href="gallery.html">加入我们</a>
+                <ul>
+                    
+              	</ul>
+            </li>
+            <li><a href="blog.html">联系我们</a></li>
+            <li><a href="contact.html">用户建议</a></li>
+        </ul>
+        <br style="clear: left" />
+    </div> <!-- end of templatemo_menu -->
+    
+    <br><br><font size="5">
+您绑定的银行卡:622848*******210&nbsp;&nbsp;&nbsp;&nbsp;<a href=#><input type="button" value="解绑"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=#><input type="button" value="添加"></a>
+<br><br><br><br>
+您的驾照信息:<img src="驾照.jpg">&nbsp;&nbsp;&nbsp;&nbsp;<a href="">管理</a></font>
+        
+       
+</body>
+</html>
